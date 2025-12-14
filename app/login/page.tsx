@@ -31,24 +31,36 @@ export default function LoginPage() {
     }
 
     return (
-        <div>
-            <h2>Login</h2>
+        <div className={styles.container}>
+            <div className={styles.formWrapper}>
+                <h2 className={styles.h2}>Login</h2>
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                </div>
+                <form onSubmit={handleSubmit}>
+                    <div className={styles.formGroup}>
+                        <label>Email</label>
+                        <input 
+                            type="email" 
+                            value={email} 
+                            onChange={(e) => setEmail(e.target.value)} 
+                            className={styles.input}
+                            required />
+                    </div>
 
-                <div>
-                    <label>Password</label>
-                    <input type="password" value={password} onChange={(e) => setEmail(e.target.value)} required />
-                </div>
+                    <div className={styles.formGroup}>
+                        <label>Password</label>
+                        <input 
+                            type="password" 
+                            value={password} 
+                            onChange={(e) => setEmail(e.target.value)} 
+                            className={styles.input}
+                            required />
+                    </div>
 
-                <button type="submit">Login</button>
-            </form>
+                    <button type="submit" className={styles.button}>Login</button>
+                </form>
                 
-            <p>Don't have an account? <Link href="/register">Register</Link></p>
+                <p>Don't have an account? <Link href="/register" className={styles.link}>Register</Link></p>
+            </div>
         </div>
     )
 }

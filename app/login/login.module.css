@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.h2 {
+    font-size: 40px;
+}
+
+.formWrapper {
+    width: 500px;
+    background-color: rgb(228, 227, 227);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.button {
+    width: 100%;
+    border: 2px;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.link {
+    color: blue;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
