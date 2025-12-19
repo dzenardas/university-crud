@@ -35,8 +35,8 @@ export async function POST(request: Request) {
         console.error("Registration error:", error)
         
         return NextResponse.json(
-        {error: "Something went wrong"},
-        {status: 500}
-    )
+            {error: "Something went wrong"},
+            {status: 500}
+        )
     }
 }
