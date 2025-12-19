@@ -1,39 +1,73 @@
 .container {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.wrapper {
+    width: 600px;
+    background-color: rgb(228, 227, 227);
+    padding: 30px;
+    border-radius: 5px;
 }
 
 .title {
-    font-size: 36px;
+    font-size: 40px;
     margin-bottom: 20px;
 }
 
-.infoSection {
+.infoRow {
     margin-bottom: 15px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 3px;
+}
+
+.infoRow strong {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.description {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 3px;
+}
+
+.description strong {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .actions {
     margin-top: 30px;
+    display: flex;
+    gap: 10px;
 }
 
-.editLink {
+.editButton {
     padding: 10px 20px;
     background-color: blue;
     color: white;
     text-decoration: none;
     border-radius: 3px;
-    margin-right: 10px;
-    display: inline-block;
+    border: none;
+    cursor: pointer;
 }
 
-.editLink:hover {
+.editButton:hover {
     background-color: darkblue;
 }
 
 .backLink {
     color: blue;
     text-decoration: none;
+    padding: 10px 20px;
 }
 
 .backLink:hover {

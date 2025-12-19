@@ -21,9 +21,11 @@ export default async function CourseDetailPage({params}: {params: {id: string}})
         redirect("/login")
     }
 
+    const {id} = await params
+
     const course = await prisma.course.findUnique({
         where: {
-            id: params.id
+            id: id
         }
     })
 
@@ -43,33 +45,39 @@ export default async function CourseDetailPage({params}: {params: {id: string}})
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>{course.title}</h1>
-            
-            <div className={styles.infoSection}>
-                <p><strong>Course Code:</strong> {course.code}</p>
-            </div>
+            <div className={styles.wrapper}>
+                <h1 className={styles.title}>{course.title}</h1>
+                
+                <div className={styles.infoRow}>
+                    <strong>Course Code</strong>
+                    <span>{course.code}</span>
+                </div>
 
-            <div className={styles.infoSection}>
-                <p><strong>Credits:</strong> {course.credits}</p>
-            </div>
+                <div className={styles.infoRow}>
+                    <strong>Credits</strong>
+                    <span>{course.credits}</span>
+                </div>
 
-            <div className={styles.infoSection}>
-                <p><strong>Semester:</strong> {course.semester}</p>
-            </div>
+                <div className={styles.infoRow}>
+                    <strong>Semester</strong>
+                    <span>{course.semester}</span>
+                </div>
 
-            <div>
-                <strong>Description:</strong>
-                <p>{course.description}</p>
-            </div>
-        
+                {course.description && (
+                    <div className={styles.description}>
+                        <strong>Description</strong>
+                        <p>{course.description}</p>
+                    </div>
+                )}
 
-            <div className={styles.actions}>
-                <Link href={`/courses/${course.id}/edit`} className={styles.editLink}>
-                    Edit Course
-                </Link>
-                <Link href="/dashboard" className={styles.backLink}>
-                    Back to Dashboard
-                </Link>
+                <div className={styles.actions}>
+                    <Link href={`/courses/${course.id}/edit`} className={styles.editButton}>
+                        Edit Course
+                    </Link>
+                    <Link href="/dashboard" className={styles.backLink}>
+                        Back to Dashboard
+                    </Link>
+                </div>
             </div>
         </div>
     )

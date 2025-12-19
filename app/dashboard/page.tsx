@@ -36,7 +36,7 @@ export default async function DashboardPage() {
             <p>Welcome, {session.user.name}!</p>
 
             <h2>Your Courses ({courses.length})</h2>
-            <Link href="/courses/new" className={styles.createButton}>Create new course</Link>
+            <Link href="/courses/create" className={styles.createButton}>Create new course</Link>
 
             {courses.length === 0 ? (
                 <p>No courses yet. Create your first course!</p>

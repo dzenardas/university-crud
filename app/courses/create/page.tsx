@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import styles from "./newCourse.module.css"
+import styles from "./createCourse.module.css"
 
 export default function NewCoursePage() {
     const [title, setTitle] = useState("")
