@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import styles from "./editCourse.module.css"
+import styles from "./updateCourse.module.css"
 
-export default function EditCoursePage({params}: {params: Promise<{id: string}>}) {
+export default function UpdateCoursePage({params}: {params: Promise<{id: string}>}) {
     const [title, setTitle] = useState("")
     const [code, setCode] = useState("")
     const [description, setDescription] = useState("")

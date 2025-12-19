@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import styles from "./createCourse.module.css"
 
-export default function NewCoursePage() {
+export default function CreateCoursePage() {
     const [title, setTitle] = useState("")
     const [code, setCode] = useState("")
     const [description, setDescription] = useState("")

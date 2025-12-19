@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma"
 import Link from "next/link"
 import styles from "./readCourse.module.css"
 
-export default async function CourseDetailPage({params}: {params: {id: string}}) {
+export default async function ReadCoursePage({params}: {params: {id: string}}) {
     const session = await auth()
 
     if (!session?.user?.email) {
@@ -71,7 +71,7 @@ export default async function CourseDetailPage({params}: {params: {id: string}})
                 )}
 
                 <div className={styles.actions}>
-                    <Link href={`/courses/${course.id}/edit`} className={styles.editButton}>
+                    <Link href={`/courses/${course.id}/update`} className={styles.editButton}>
                         Edit Course
                     </Link>
                     <Link href="/dashboard" className={styles.backLink}>
