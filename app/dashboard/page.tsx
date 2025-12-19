@@ -1,5 +1,7 @@
 import { auth } from "@/auth"
 import { redirect } from "next/navigation"
+import Link from "next/link"
+import styles from "./dashboard.module.css";
 import { prisma } from "@/lib/prisma"
 
 export default async function DashboardPage() {
@@ -24,6 +26,7 @@ export default async function DashboardPage() {
             <p>Welcome, {session.user.name}!</p>
 
             <h2>Your Courses ({courses.length})</h2>
+            <Link href="/courses/new" className={styles.createButton}>Create new course</Link>
 
             {courses.length === 0 ? (
                 <p>No courses yet. Create your first course!</p>
