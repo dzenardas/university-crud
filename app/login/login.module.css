@@ -17,6 +17,10 @@
     border-radius: 5px;
 }
 
+.formGroup {
+    margin-bottom: 15px;
+}
+
 .formGroup label {
     display: block;
     margin-bottom: 5px;
