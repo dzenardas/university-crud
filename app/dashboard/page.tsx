@@ -7,7 +7,17 @@ import { prisma } from "@/lib/prisma"
 export default async function DashboardPage() {
     const session = await auth()
 
-    if (!session?.user) {
+    if (!session?.user?.email) {
+        redirect("/login")
+    }
+
+    const currentUser = await prisma.user.findUnique({
+        where: {
+            email: session.user.email
+        }
+    })
+
+    if (!currentUser) {
         redirect("/login")
     }
 
@@ -34,7 +44,9 @@ export default async function DashboardPage() {
                 <ul>
                     {courses.map((course) => (
                         <li key={course.id}>
-                            <strong>{course.code}</strong> - {course.title}
+                            <Link href={`/courses/${course.id}`}>
+                                <strong>{course.code}</strong> - {course.title}
+                            </Link>
                         </li>
                     ))}
                 </ul>
