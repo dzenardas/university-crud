@@ -14,7 +14,9 @@ export async function GET(request: Request, {params}: {params: Promise<{id: stri
         }
 
         const user = await prisma.user.findUnique({
-            where: { email: session.user.email }
+            where: { 
+                email: session.user.email 
+            }
         })
 
         if (!user) {
@@ -52,6 +54,72 @@ export async function GET(request: Request, {params}: {params: Promise<{id: stri
         )
     } catch (error) {
         console.error("Course fetch error:", error)
+        
+        return NextResponse.json(
+            {error: "Something went wrong"},
+            {status: 500}
+        )
+    }
+}
+
+export async function DELETE(request: Request, {params}: {params: Promise<{id: string}>}) {
+    try {
+        const session = await auth()
+
+        if (!session?.user?.email) {
+            return NextResponse.json(
+                {error: "Unauthorized"},
+                {status: 401}
+            )
+        }
+
+        const user = await prisma.user.findUnique({
+            where: { 
+                email: session.user.email 
+            }
+        })
+
+        if (!user) {
+            return NextResponse.json(
+                {error: "User not found"},
+                {status: 404}
+            )
+        }
+
+        const {id} = await params
+
+        const course = await prisma.course.findUnique({
+            where: {
+                id: id
+            }
+        })
+
+        if (!course) {
+            return NextResponse.json(
+                {error: "Course not found"},
+                {status: 404}
+            )
+        }
+
+        if (course.professorId !== user.id) {
+            return NextResponse.json(
+                {error: "Unauthorized"},
+                {status: 401}
+            )
+        }
+
+        await prisma.course.delete({
+            where: {
+                id: id
+            }
+        })
+
+        return NextResponse.json(
+            {message: "Course deleted successfully."},
+            {status: 200}
+        )
+    } catch (error) {
+        console.error("Course delete error:", error)
         
         return NextResponse.json(
             {error: "Something went wrong"},

@@ -73,3 +73,17 @@
 .backLink:hover {
     text-decoration: underline;
 }
+
+.deleteButton {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: darkred;
+}

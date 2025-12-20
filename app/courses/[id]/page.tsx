@@ -3,8 +3,9 @@ import { redirect } from "next/navigation"
 import { prisma } from "@/lib/prisma"
 import Link from "next/link"
 import styles from "./readCourse.module.css"
+import DeleteButton from "./delete/deleteButton"
 
-export default async function ReadCoursePage({params}: {params: {id: string}}) {
+export default async function ReadCoursePage({params}: {params: Promise<{id: string}>}) {
     const session = await auth()
 
     if (!session?.user?.email) {
@@ -74,6 +75,7 @@ export default async function ReadCoursePage({params}: {params: {id: string}}) {
                     <Link href={`/courses/${course.id}/update`} className={styles.editButton}>
                         Edit Course
                     </Link>
+                    <DeleteButton courseId={course.id} className={styles.deleteButton} />
                     <Link href="/dashboard" className={styles.backLink}>
                         Back to Dashboard
                     </Link>
