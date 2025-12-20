@@ -1,28 +1,16 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth"
 import { prisma } from "@/lib/prisma"
+import { getCurrentUserForAPI } from "@/lib/authHelper"
 
 export async function GET(request: Request, {params}: {params: Promise<{id: string}>}) {
     try {
-        const session = await auth()
-
-        if (!session?.user?.email) {
-            return NextResponse.json(
-                {error: "Unauthorized"},
-                {status: 401}
-            )
-        }
-
-        const user = await prisma.user.findUnique({
-            where: { 
-                email: session.user.email 
-            }
-        })
+        const user = await getCurrentUserForAPI()
 
         if (!user) {
             return NextResponse.json(
-                {error: "User not found"},
-                {status: 404}
+                {error: "Unauthorized"},
+                {status: 401}
             )
         }
 
@@ -64,25 +52,12 @@ export async function GET(request: Request, {params}: {params: Promise<{id: stri
 
 export async function DELETE(request: Request, {params}: {params: Promise<{id: string}>}) {
     try {
-        const session = await auth()
-
-        if (!session?.user?.email) {
-            return NextResponse.json(
-                {error: "Unauthorized"},
-                {status: 401}
-            )
-        }
-
-        const user = await prisma.user.findUnique({
-            where: { 
-                email: session.user.email 
-            }
-        })
+        const user = await getCurrentUserForAPI()
 
         if (!user) {
             return NextResponse.json(
-                {error: "User not found"},
-                {status: 404}
+                {error: "Unauthorized"},
+                {status: 401}
             )
         }
 
@@ -130,23 +105,12 @@ export async function DELETE(request: Request, {params}: {params: Promise<{id: s
 
 export async function PUT(request: Request, {params}: {params: Promise<{id: string}>}) {
     try {
-        const session = await auth()
-
-        if (!session?.user?.email) {
-            return NextResponse.json(
-                {error: "Unauthorized"},
-                {status: 401}
-            )
-        }
-
-        const user = await prisma.user.findUnique({
-            where: { email: session.user.email }
-        })
+        const user = await getCurrentUserForAPI()
 
         if (!user) {
             return NextResponse.json(
-                {error: "User not found"},
-                {status: 404}
+                {error: "Unauthorized"},
+                {status: 401}
             )
         }
 
