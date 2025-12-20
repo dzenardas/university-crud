@@ -1,26 +1,11 @@
-import { auth } from "@/auth"
-import { redirect } from "next/navigation"
 import { prisma } from "@/lib/prisma"
 import Link from "next/link"
 import styles from "./readCourse.module.css"
 import DeleteButton from "./delete/deleteButton"
+import { getCurrentUser } from "@/lib/authHelper"
 
 export default async function ReadCoursePage({params}: {params: Promise<{id: string}>}) {
-    const session = await auth()
-
-    if (!session?.user?.email) {
-        redirect("/login")
-    }
-
-    const currentUser = await prisma.user.findUnique({
-        where: {
-            email: session.user.email
-        }
-    })
-
-    if (!currentUser) {
-        redirect("/login")
-    }
+    const currentUser = await getCurrentUser()
 
     const {id} = await params
 
